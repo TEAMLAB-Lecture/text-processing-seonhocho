@@ -3,8 +3,8 @@
 #######################
 
 """
-NLP에서 흔히하는 전처리는 소문자 변환, 앞뒤 필요없는 띄어쓰기를 제거하는 등의 텍스트 정규화 (text normalization)입니다. 
-이번 숙제에서는 텍스트 처리 방법을 파이썬으로 배워보겠습니다. 
+NLP에서 흔히하는 전처리는 소문자 변환, 앞뒤 필요없는 띄어쓰기를 제거하는 등의 텍스트 정규화 (text normalization)입니다.
+이번 숙제에서는 텍스트 처리 방법을 파이썬으로 배워보겠습니다.
 """
 
 
@@ -33,8 +33,14 @@ def normalize(input_string):
              >>> tp.normalize(input_string2)
              'extra space'
     """
-    normalized_string = None
+
+    ret = handle_whitespace(input_string)
+    normalized_string = ret.lower()
     return normalized_string
+
+
+def handle_whitespace(input_string: str) -> str:
+    return ' '.join(input_string.split())
 
 
 def no_vowels(input_string):
@@ -52,11 +58,13 @@ def no_vowels(input_string):
         Examples:
             >>> import text_processing as tp
             >>> input_string1 = "This is an example."
-            >>> tp.normalize(input_string1)
-            "Ths s n xmpl."
+            >>> tp.no_vowels(input_string1)
+            'Ths s n xmpl.'
             >>> input_string2 = "We love Python!"
-            >>> tp.normalize(input_string2)
-            ''W lv Pythn!'
+            >>> tp.no_vowels(input_string2)
+            'W lv Pythn!'
     """
-    no_vowel_string = None
+    vowels = ('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U')
+    no_vowel_string = ''.join(
+        [s for s in input_string if s not in vowels])
     return no_vowel_string
